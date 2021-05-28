@@ -19,7 +19,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Band {
     @Id
-    private UUID id;
+    private String id;
     private String name;
     private String musicGenre;
 

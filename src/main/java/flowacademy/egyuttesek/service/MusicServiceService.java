@@ -16,7 +16,7 @@ public class MusicServiceService {
     public MusicService createMusicService(MusicService musicService){
        return musicServiceRepository.save(
                 MusicService.builder()
-                        .id(UUID.randomUUID())
+                        .id(UUID.randomUUID().toString())
                         .name(musicService.getName())
                         .build()
         );

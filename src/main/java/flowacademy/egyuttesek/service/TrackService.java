@@ -16,7 +16,7 @@ public class TrackService {
     public Track createTrack(Track track){
         return trackRepository.save(
                 Track.builder()
-                        .id(UUID.randomUUID())
+                        .id(UUID.randomUUID().toString())
                         .name(track.getName())
                         .licencePrice(track.getLicencePrice())
                         .trackLength(track.getTrackLength())

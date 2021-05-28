@@ -17,7 +17,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Album {
     @Id
-    private UUID id;
+    private String id;
     private String name;
     private Date releaseDate;
     @ManyToOne

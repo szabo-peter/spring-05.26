@@ -18,7 +18,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Track {
     @Id
-    private UUID id;
+    private String id;
     private String name;
     private int trackLength;
     private int licencePrice;

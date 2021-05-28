@@ -18,7 +18,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class MusicService {
     @Id
-    private UUID id;
+    private String id;
     private String name;
     @OneToMany(mappedBy = "musicService")
     private List<Track> trackList;

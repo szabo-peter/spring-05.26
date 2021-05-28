@@ -37,7 +37,7 @@ public class AlbumService {
 //        bandRepository.findByName(bandName).setAlbumList(albums);
         return albumRepository.save(
                 Album.builder()
-                        .id(UUID.randomUUID())
+                        .id(UUID.randomUUID().toString())
                         .name(album.getName())
                         .band(band)
                         .build());

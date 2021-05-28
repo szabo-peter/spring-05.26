@@ -17,7 +17,7 @@ public class BandService {
     public Band createBand(Band band){
         return bandRepository.save(
                 Band.builder()
-                        .id(UUID.randomUUID())
+                        .id(UUID.randomUUID().toString())
                         .name(band.getName())
                         .musicGenre(band.getMusicGenre())
                         .build()
