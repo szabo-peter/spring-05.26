@@ -1,7 +1,9 @@
 package flowacademy.egyuttesek.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,6 +13,8 @@ import java.util.UUID;
 @Entity
 @Data
 @AllArgsConstructor
+@Builder
+@NoArgsConstructor
 public class Album {
     @Id
     private UUID id;
@@ -24,3 +28,5 @@ public class Album {
     private List<Track> trackList;
 
 }
+
+

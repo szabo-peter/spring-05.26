@@ -1,6 +1,9 @@
 package flowacademy.egyuttesek.controller;
 
 import flowacademy.egyuttesek.model.Album;
+import flowacademy.egyuttesek.model.Band;
+import flowacademy.egyuttesek.model.MusicService;
+import flowacademy.egyuttesek.model.Track;
 import flowacademy.egyuttesek.repository.AlbumRepository;
 import flowacademy.egyuttesek.repository.BandRepository;
 import flowacademy.egyuttesek.repository.MusicServiceRepository;
@@ -23,12 +26,41 @@ public class Controller {
 
     private final BandService bandService;
 
-    private  final TrackService trackService;
+    private final TrackService trackService;
 
-    private  final MusicServiceService musicServiceService;
+    private final MusicServiceService musicServiceService;
+
+    @GetMapping("query/album")
+    public List<Album> getAllAlbum() {
+        return albumService.findAll();
+    }
+
+    @GetMapping("query/band")
+    public List<Band> getAllBand() {
+        return bandService.findAll();
+    }
 
     @GetMapping("query/album/{band}")
-    public List<Album> getAlbumsByBand(@PathVariable String band){
-       return albumService.findByBandName(band);
+    public List<Album> getAlbumsByBand(@PathVariable String band) {
+        return albumService.findByName(band);
+    }
+
+    @PostMapping("letrehoz/album")
+    public Album createAlbum(@RequestBody Album album) {
+        return albumService.addAlbum(album);
+    }
+
+    @PostMapping("letrehoz/musicservice")
+    public MusicService createMusicService(@RequestBody MusicService musicService) {
+        return musicServiceService.createMusicService(musicService);
+    }
+    @PostMapping("letrehoz/band")
+    public Band createBand(@RequestBody Band band) {
+        return bandService.createBand(band);
+    }
+
+    @PostMapping("letrehoz/track")
+    public Track createTrack(@RequestBody Track track) {
+        return trackService.createTrack(track);
     }
 }
