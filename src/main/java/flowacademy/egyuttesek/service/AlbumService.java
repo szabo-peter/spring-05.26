@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -29,8 +30,8 @@ public class AlbumService {
     }
 
     public Album addAlbum(Album album) {
-        String bandName = album.getBand().getName();
-        Band band = bandRepository.findByName(bandName);
+        String bandId = album.getBand().getId();
+        Band band = bandRepository.findById(bandId).orElse(null);
         return albumRepository.save(
                 Album.builder()
                         .id(UUID.randomUUID().toString())
