@@ -8,7 +8,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -22,19 +24,13 @@ public class AlbumService {
         return albumRepository.findByBandContaining(band);
     }
 
-    public List<Album> findAll() {
-        return albumRepository.findAll();
+    public Map<String, String> findAll() {
+        return albumRepository.findAll().stream().collect(Collectors.toMap(Album::getId,Album::getName));
     }
 
     public Album addAlbum(Album album) {
         String bandName = album.getBand().getName();
         Band band = bandRepository.findByName(bandName);
-//        System.out.println(band);
-//        List<Album> albums = bandRepository.findByName(bandName).getAlbumList();
-//        System.out.println(albums);
-//        albums.add(album);
-//        System.out.println(albums);
-//        bandRepository.findByName(bandName).setAlbumList(albums);
         return albumRepository.save(
                 Album.builder()
                         .id(UUID.randomUUID().toString())

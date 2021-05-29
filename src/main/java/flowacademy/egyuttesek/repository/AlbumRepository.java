@@ -4,9 +4,8 @@ import flowacademy.egyuttesek.model.Album;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.UUID;
 
-public interface AlbumRepository extends JpaRepository<Album, UUID> {
+public interface AlbumRepository extends JpaRepository<Album, String> {
 
     List<Album> findByBandContaining(String band);
 }

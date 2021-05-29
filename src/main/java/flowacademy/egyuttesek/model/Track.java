@@ -26,5 +26,6 @@ public class Track {
     @JoinColumn
     private Album album;
     @ManyToOne
+    @JoinColumn
     private MusicService musicService;
 }

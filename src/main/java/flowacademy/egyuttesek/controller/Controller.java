@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @AllArgsConstructor
@@ -31,7 +32,7 @@ public class Controller {
     private final MusicServiceService musicServiceService;
 
     @GetMapping("query/album")
-    public List<Album> getAllAlbum() {
+    public Map<String, String> getAllAlbum() {
         return albumService.findAll();
     }
 
@@ -44,6 +45,8 @@ public class Controller {
     public List<Album> getAlbumsByBand(@PathVariable String band) {
         return albumService.findByName(band);
     }
+
+
 
     @PostMapping("letrehoz/album")
     public Album createAlbum(@RequestBody Album album) {

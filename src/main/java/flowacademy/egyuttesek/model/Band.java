@@ -23,7 +23,7 @@ public class Band {
     private String name;
     private String musicGenre;
 
-    @OneToMany(mappedBy ="band", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy ="band")
     protected List<Album> albumList;
 
 
