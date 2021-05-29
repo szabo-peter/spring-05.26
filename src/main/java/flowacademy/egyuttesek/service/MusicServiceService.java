@@ -5,6 +5,7 @@ import flowacademy.egyuttesek.repository.MusicServiceRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -20,5 +21,9 @@ public class MusicServiceService {
                         .name(musicService.getName())
                         .build()
         );
+    }
+
+    public List<MusicService> findAll(){
+        return musicServiceRepository.findAll();
     }
 }

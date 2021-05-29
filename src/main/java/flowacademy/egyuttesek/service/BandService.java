@@ -6,7 +6,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -24,9 +26,8 @@ public class BandService {
         );
     }
 
-
-    public List<Band> findAll() {
-        return bandRepository.findAll();
+    public Map<String, String> findAll() {
+        return bandRepository.findAll().stream().collect(Collectors.toMap(Band::getId,Band::getName));
     }
 
 }

@@ -9,7 +9,6 @@ import flowacademy.egyuttesek.repository.AlbumRepository;
 import flowacademy.egyuttesek.repository.BandRepository;
 import flowacademy.egyuttesek.repository.MusicServiceRepository;
 import flowacademy.egyuttesek.repository.TrackRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -43,7 +42,7 @@ public class InitDataLoader implements CommandLineRunner {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args){
         saveBands();
         List<Band> bands = bandRepository.findAll();
         saveAlbums(bands);
@@ -84,7 +83,7 @@ public class InitDataLoader implements CommandLineRunner {
         return IntStream.range(0, 10)
                 .mapToObj(value -> Album.builder()
                         .id(UUID.randomUUID().toString())
-                        .name(faker().music().key())
+                        .name(faker().funnyName().name())
                         .band(bands.get(new Random().nextInt(bands.size())))
                         .releaseDate(faker().date().birthday(1,20))
                         .build())

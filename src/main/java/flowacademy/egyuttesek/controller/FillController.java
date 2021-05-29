@@ -4,24 +4,20 @@ import flowacademy.egyuttesek.model.Album;
 import flowacademy.egyuttesek.model.Band;
 import flowacademy.egyuttesek.model.MusicService;
 import flowacademy.egyuttesek.model.Track;
-import flowacademy.egyuttesek.repository.AlbumRepository;
-import flowacademy.egyuttesek.repository.BandRepository;
-import flowacademy.egyuttesek.repository.MusicServiceRepository;
-import flowacademy.egyuttesek.repository.TrackRepository;
 import flowacademy.egyuttesek.service.AlbumService;
 import flowacademy.egyuttesek.service.BandService;
 import flowacademy.egyuttesek.service.MusicServiceService;
 import flowacademy.egyuttesek.service.TrackService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Map;
-
-@RestController
 @AllArgsConstructor
-@RequestMapping("/api/v1/")
-public class Controller {
+@RestController
+@RequestMapping("/api/v1/fill/")
+public class FillController {
 
     private final AlbumService albumService;
 
@@ -31,33 +27,16 @@ public class Controller {
 
     private final MusicServiceService musicServiceService;
 
-    @GetMapping("query/album")
-    public Map<String, String> getAllAlbum() {
-        return albumService.findAll();
-    }
-
-    @GetMapping("query/band")
-    public List<Band> getAllBand() {
-        return bandService.findAll();
-    }
-
-    @GetMapping("query/album/{band}")
-    public List<Album> getAlbumsByBand(@PathVariable String band) {
-        return albumService.findByName(band);
-    }
-
-
-
-    @PostMapping("letrehoz/album")
+    @PostMapping("album")
     public Album createAlbum(@RequestBody Album album) {
         return albumService.addAlbum(album);
     }
 
-    @PostMapping("letrehoz/musicservice")
+    @PostMapping("musicservice")
     public MusicService createMusicService(@RequestBody MusicService musicService) {
         return musicServiceService.createMusicService(musicService);
     }
-    @PostMapping("letrehoz/band")
+    @PostMapping("band")
     public Band createBand(@RequestBody Band band) {
         return bandService.createBand(band);
     }
