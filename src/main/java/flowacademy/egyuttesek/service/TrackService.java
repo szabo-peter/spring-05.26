@@ -61,7 +61,8 @@ public class TrackService {
     }
 
     public void deleteATrackFromMusicService(String id) {
-        Track wantToDel = trackRepository.findById(id).stream().collect(Collectors.toList()).get(0);
+        Track wantToDel = trackRepository.findById(id).orElse(null);
+        assert wantToDel != null;
         trackRepository.delete(wantToDel);
     }
 }

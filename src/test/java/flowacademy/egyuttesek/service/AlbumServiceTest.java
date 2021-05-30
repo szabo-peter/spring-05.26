@@ -1,18 +1,14 @@
 package flowacademy.egyuttesek.service;
 
 import flowacademy.egyuttesek.model.Album;
-import flowacademy.egyuttesek.model.Band;
 import flowacademy.egyuttesek.repository.AlbumRepository;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.sql.Date;
-import java.time.LocalDate;
+
 import java.util.List;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -39,15 +35,13 @@ class AlbumServiceTest {
     }
 
 //    @Test
-//    public void addAlbumTest(){
+//    void findByName() {
+//        Band band1 = Band.builder().id("ID1").name("Metallica").build();
 //
-//        albumRepository.save(Album.builder().id("ID01").name("Album Cím1").build());
-//        assertEquals(1,albumService.findAll().size());
+//        Album album = Album.builder().id("ID01").name("Album Cím1").band(band1).build();
+//        when(albumRepository.findByBandNameContaining("Metallica")).thenReturn(List.of(album));
+//
+//        assertEquals("ID01",albumService.findByName("Metallica").get(0).split(";")[0]);
 //    }
-
-//    Band band1 = Band.builder().id("ID1").name("Metallica").build();
-//    Band band2 = Band.builder().id("ID2").name("AC/DC").build();
-//    Band band3 = Band.builder().id("ID3").name("Kispál és a Borz").build();
-
 
 }
