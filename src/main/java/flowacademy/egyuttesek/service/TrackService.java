@@ -9,7 +9,9 @@ import flowacademy.egyuttesek.repository.TrackRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -36,5 +38,11 @@ public class TrackService {
                         .build()
         );
         return track.getName()+ " - "+ id;
+    }
+
+    public List<String> getTracksByAlbum(String name){
+        List<Track> tracks = trackRepository.findByAlbumNameContaining(name);
+
+        return tracks.stream().map(track -> track.getId() +";"+track.getName()+";"+track.getTrackLength()).collect(Collectors.toList());
     }
 }

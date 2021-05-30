@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface AlbumRepository extends JpaRepository<Album, String> {
 
-    List<Album> findByBandContaining(String band);
+    List<Album> findByBandNameContaining(String name);
 }

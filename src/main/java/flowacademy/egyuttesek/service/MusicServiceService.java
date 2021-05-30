@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -24,8 +25,9 @@ public class MusicServiceService {
         );
         return musicService.getName() + " - "+ id;
     }
+    public List<String> findAll(){
+        List<MusicService> musicServices = musicServiceRepository.findAll();
 
-    public List<MusicService> findAll(){
-        return musicServiceRepository.findAll();
+        return musicServices.stream().map(musicService -> musicService.getId()+";"+musicService.getName()).collect(Collectors.toList());
     }
 }

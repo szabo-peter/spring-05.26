@@ -1,5 +1,6 @@
 package flowacademy.egyuttesek.controller;
 
+import com.fasterxml.jackson.databind.util.JSONWrappedObject;
 import flowacademy.egyuttesek.model.Album;
 import flowacademy.egyuttesek.model.MusicService;
 import flowacademy.egyuttesek.service.AlbumService;
@@ -26,22 +27,25 @@ public class GetController {
     private final MusicServiceService musicServiceService;
 
     @GetMapping("album")
-    public List<Album> getAllAlbum() {
+    public List<String> getAllAlbum() {
         return albumService.findAll();
     }
 
     @GetMapping("band")
-    public Map<String, String> getAllBand() {
+    public List<String> getAllBand() {
         return bandService.findAll();
     }
 
     @GetMapping("album/{band}")
-    public List<Album> getAlbumsByBand(@PathVariable String band) {
+    public List<String> getAlbumsByBand(@PathVariable String band) {
         return albumService.findByName(band);
     }
-
+    @GetMapping("track/{album}")
+    public List<String> getTracksByAlbum(@PathVariable String album) {
+        return trackService.getTracksByAlbum(album);
+    }
     @GetMapping("musicservice")
-    public List<MusicService> getAllMusicService(){
+    public List<String> getAllMusicService(){
         return musicServiceService.findAll();
     }
 }

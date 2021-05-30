@@ -28,8 +28,8 @@ public class BandService {
         return band.getName() + " - " + id;
     }
 
-    public Map<String, String> findAll() {
-        return bandRepository.findAll().stream().collect(Collectors.toMap(Band::getId,Band::getName));
+    public List<String> findAll() {
+        List<Band> bands = bandRepository.findAll();
+        return bands.stream().map(band -> band.getId()+";"+band.getName()).collect(Collectors.toList());
     }
-
 }
