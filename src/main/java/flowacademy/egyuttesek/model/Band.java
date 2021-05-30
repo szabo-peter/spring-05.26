@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Data
@@ -23,7 +22,7 @@ public class Band {
     private String name;
     private String musicGenre;
 
-    @OneToMany(mappedBy ="band", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "band", fetch = FetchType.LAZY)
     protected List<Album> albumList;
 
 

@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -42,14 +41,14 @@ public class InitDataLoader implements CommandLineRunner {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public void run(String... args){
+    public void run(String... args) {
         saveBands();
         List<Band> bands = bandRepository.findAll();
         saveAlbums(bands);
         saveMusicService();
         List<Album> albums = albumRepository.findAll();
         List<MusicService> musicServices = musicServiceRepository.findAll();
-        saveTrack(albums,musicServices);
+        saveTrack(albums, musicServices);
     }
 
     @Transactional
@@ -70,6 +69,7 @@ public class InitDataLoader implements CommandLineRunner {
                         .build())
                 .collect(Collectors.toList());
     }
+
     @Transactional
     private void saveAlbums(List<Band> bands) {
         List<Album> albums = albumRepository.saveAll(
@@ -85,18 +85,20 @@ public class InitDataLoader implements CommandLineRunner {
                         .id(UUID.randomUUID().toString())
                         .name(faker().funnyName().name())
                         .band(bands.get(new Random().nextInt(bands.size())))
-                        .releaseDate(faker().date().birthday(1,20))
+                        .releaseDate(faker().date().birthday(1, 20))
                         .build())
                 .collect(Collectors.toList());
     }
+
     @Transactional
     private void saveMusicService() {
         List<MusicService> musicServices = musicServiceRepository.saveAll(
-                    newMusicService()
+                newMusicService()
         );
 
         log.info("Generated {} musicService", musicServices.size());
     }
+
     private List<MusicService> newMusicService() {
         return IntStream.range(0, 10)
                 .mapToObj(value -> MusicService.builder()
@@ -105,10 +107,11 @@ public class InitDataLoader implements CommandLineRunner {
                         .build())
                 .collect(Collectors.toList());
     }
+
     @Transactional
     private void saveTrack(List<Album> albums, List<MusicService> musicServices) {
         List<Track> tracks = trackRepository.saveAll(
-                newTrack(albums,musicServices)
+                newTrack(albums, musicServices)
         );
 
         log.info("Generated {} track", tracks.size());
@@ -119,8 +122,8 @@ public class InitDataLoader implements CommandLineRunner {
                 .mapToObj(value -> Track.builder()
                         .id(UUID.randomUUID().toString())
                         .name(faker().superhero().power())
-                        .licencePrice(faker().number().numberBetween(10,200))
-                        .trackLength(faker().number().numberBetween(200,500))
+                        .licencePrice(faker().number().numberBetween(10, 200))
+                        .trackLength(faker().number().numberBetween(200, 500))
                         .album(albums.get(new Random().nextInt(albums.size())))
                         .musicService(musicServices.get(new Random().nextInt(musicServices.size())))
                         .build())

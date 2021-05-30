@@ -6,10 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlIDREF;
-import java.util.List;
-import java.util.UUID;
-
 
 @Entity
 @Data

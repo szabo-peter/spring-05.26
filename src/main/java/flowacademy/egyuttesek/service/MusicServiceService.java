@@ -15,7 +15,7 @@ public class MusicServiceService {
 
     private final MusicServiceRepository musicServiceRepository;
 
-    public String createMusicService(MusicService musicService){
+    public String createMusicService(MusicService musicService) {
         String id;
         musicServiceRepository.save(
                 MusicService.builder()
@@ -23,11 +23,12 @@ public class MusicServiceService {
                         .name(musicService.getName())
                         .build()
         );
-        return musicService.getName() + " - "+ id;
+        return musicService.getName() + " - " + id;
     }
-    public List<String> findAll(){
+
+    public List<String> findAll() {
         List<MusicService> musicServices = musicServiceRepository.findAll();
 
-        return musicServices.stream().map(musicService -> musicService.getId()+";"+musicService.getName()).collect(Collectors.toList());
+        return musicServices.stream().map(musicService -> musicService.getId() + ";" + musicService.getName()).collect(Collectors.toList());
     }
 }

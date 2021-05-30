@@ -1,8 +1,5 @@
 package flowacademy.egyuttesek.controller;
 
-import com.fasterxml.jackson.databind.util.JSONWrappedObject;
-import flowacademy.egyuttesek.model.Album;
-import flowacademy.egyuttesek.model.MusicService;
 import flowacademy.egyuttesek.service.AlbumService;
 import flowacademy.egyuttesek.service.BandService;
 import flowacademy.egyuttesek.service.MusicServiceService;
@@ -11,7 +8,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @AllArgsConstructor
@@ -40,12 +36,14 @@ public class GetController {
     public List<String> getAlbumsByBand(@PathVariable String band) {
         return albumService.findByName(band);
     }
+
     @GetMapping("track/{album}")
     public List<String> getTracksByAlbum(@PathVariable String album) {
         return trackService.getTracksByAlbum(album);
     }
+
     @GetMapping("musicservice")
-    public List<String> getAllMusicService(){
+    public List<String> getAllMusicService() {
         return musicServiceService.findAll();
     }
 }

@@ -1,6 +1,6 @@
 package flowacademy.egyuttesek.service;
 
-import com.fasterxml.jackson.databind.util.JSONWrappedObject;
+
 import flowacademy.egyuttesek.model.Album;
 import flowacademy.egyuttesek.model.Band;
 import flowacademy.egyuttesek.model.Track;
@@ -25,15 +25,15 @@ public class AlbumService {
     public List<String> findByName(String name) {
         List<Album> albums = albumRepository.findByBandNameContaining(name);
 
-        return albums.stream().map(album->album.getId() + ";" + album.getName()+ ";"+ album.getReleaseDate()
-        + ";"+album.getTrackList().stream().map(Track::getTrackLength).reduce(0,Integer::sum)).collect(Collectors.toList());
+        return albums.stream().map(album -> album.getId() + ";" + album.getName() + ";" + album.getReleaseDate()
+                + ";" + album.getTrackList().stream().map(Track::getTrackLength).reduce(0, Integer::sum)).collect(Collectors.toList());
 
     }
 
 
     public List<String> findAll() {
         List<Album> albums = albumRepository.findAll();
-        return albums.stream().map(album->album.getId()+";"+album.getName()).collect(Collectors.toList());
+        return albums.stream().map(album -> album.getId() + ";" + album.getName()).collect(Collectors.toList());
     }
 
     public String addAlbum(Album album) {

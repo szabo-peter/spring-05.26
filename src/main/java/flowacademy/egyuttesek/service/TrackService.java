@@ -21,7 +21,7 @@ public class TrackService {
     private final MusicServiceRepository musicServiceRepository;
     private final AlbumRepository albumRepository;
 
-    public String createTrack(Track track){
+    public String createTrack(Track track) {
         String musicServiceName = track.getMusicService().getName();
         MusicService musicService = musicServiceRepository.findByName(musicServiceName);
         String albumId = track.getAlbum().getId();
@@ -37,12 +37,12 @@ public class TrackService {
                         .album(album)
                         .build()
         );
-        return track.getName()+ " - "+ id;
+        return track.getName() + " - " + id;
     }
 
-    public List<String> getTracksByAlbum(String name){
+    public List<String> getTracksByAlbum(String name) {
         List<Track> tracks = trackRepository.findByAlbumNameContaining(name);
 
-        return tracks.stream().map(track -> track.getId() +";"+track.getName()+";"+track.getTrackLength()).collect(Collectors.toList());
+        return tracks.stream().map(track -> track.getId() + ";" + track.getName() + ";" + track.getTrackLength()).collect(Collectors.toList());
     }
 }

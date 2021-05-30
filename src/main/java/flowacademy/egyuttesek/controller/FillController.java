@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.text.ParseException;
 
 @AllArgsConstructor
 @RestController
@@ -30,7 +29,7 @@ public class FillController {
     private final MusicServiceService musicServiceService;
 
     @PostMapping("album")
-    public String createAlbum(@RequestBody Album album){
+    public String createAlbum(@RequestBody Album album) {
         return albumService.addAlbum(album);
     }
 
@@ -38,6 +37,7 @@ public class FillController {
     public String createMusicService(@RequestBody MusicService musicService) {
         return musicServiceService.createMusicService(musicService);
     }
+
     @PostMapping("band")
     public String createBand(@RequestBody Band band) {
         return bandService.createBand(band);
