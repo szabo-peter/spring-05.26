@@ -19,14 +19,15 @@ public class TrackService {
     private final MusicServiceRepository musicServiceRepository;
     private final AlbumRepository albumRepository;
 
-    public Track createTrack(Track track){
+    public String createTrack(Track track){
         String musicServiceName = track.getMusicService().getName();
         MusicService musicService = musicServiceRepository.findByName(musicServiceName);
         String albumId = track.getAlbum().getId();
         Album album = albumRepository.getById(albumId);
-        return trackRepository.save(
+        String id;
+        trackRepository.save(
                 Track.builder()
-                        .id(UUID.randomUUID().toString())
+                        .id(id = UUID.randomUUID().toString())
                         .name(track.getName())
                         .licencePrice(track.getLicencePrice())
                         .trackLength(track.getTrackLength())
@@ -34,5 +35,6 @@ public class TrackService {
                         .album(album)
                         .build()
         );
+        return track.getName()+ " - "+ id;
     }
 }

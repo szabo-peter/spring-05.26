@@ -20,6 +20,6 @@ public class MusicService {
     @Id
     private String id;
     private String name;
-    @OneToMany(mappedBy = "musicService", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "musicService", fetch = FetchType.LAZY)
     private List<Track> trackList;
 }

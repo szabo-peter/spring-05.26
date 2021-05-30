@@ -16,14 +16,16 @@ public class BandService {
 
     private final BandRepository bandRepository;
 
-    public Band createBand(Band band){
-        return bandRepository.save(
+    public String createBand(Band band){
+        String id;
+        bandRepository.save(
                 Band.builder()
-                        .id(UUID.randomUUID().toString())
+                        .id(id =UUID.randomUUID().toString())
                         .name(band.getName())
                         .musicGenre(band.getMusicGenre())
                         .build()
         );
+        return band.getName() + " - " + id;
     }
 
     public Map<String, String> findAll() {

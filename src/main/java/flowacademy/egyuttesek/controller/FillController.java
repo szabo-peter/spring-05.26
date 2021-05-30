@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/v1/fill/")
@@ -28,21 +30,21 @@ public class FillController {
     private final MusicServiceService musicServiceService;
 
     @PostMapping("album")
-    public Album createAlbum(@RequestBody Album album) {
+    public String createAlbum(@RequestBody Album album){
         return albumService.addAlbum(album);
     }
 
     @PostMapping("musicservice")
-    public MusicService createMusicService(@RequestBody MusicService musicService) {
+    public String createMusicService(@RequestBody MusicService musicService) {
         return musicServiceService.createMusicService(musicService);
     }
     @PostMapping("band")
-    public Band createBand(@RequestBody Band band) {
+    public String createBand(@RequestBody Band band) {
         return bandService.createBand(band);
     }
 
     @PostMapping("letrehoz/track")
-    public Track createTrack(@RequestBody Track track) {
+    public String createTrack(@RequestBody Track track) {
         return trackService.createTrack(track);
     }
 }

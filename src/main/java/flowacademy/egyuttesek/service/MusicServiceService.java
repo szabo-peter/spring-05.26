@@ -14,13 +14,15 @@ public class MusicServiceService {
 
     private final MusicServiceRepository musicServiceRepository;
 
-    public MusicService createMusicService(MusicService musicService){
-       return musicServiceRepository.save(
+    public String createMusicService(MusicService musicService){
+        String id;
+        musicServiceRepository.save(
                 MusicService.builder()
-                        .id(UUID.randomUUID().toString())
+                        .id(id = UUID.randomUUID().toString())
                         .name(musicService.getName())
                         .build()
         );
+        return musicService.getName() + " - "+ id;
     }
 
     public List<MusicService> findAll(){

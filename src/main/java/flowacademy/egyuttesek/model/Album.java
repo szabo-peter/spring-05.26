@@ -25,7 +25,7 @@ public class Album {
     @JoinColumn
     private Band band;
 
-    @OneToMany(mappedBy = "album", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "album", fetch = FetchType.LAZY)
     private List<Track> trackList;
 
 }

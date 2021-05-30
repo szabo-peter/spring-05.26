@@ -7,9 +7,8 @@ import flowacademy.egyuttesek.repository.BandRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -25,18 +24,29 @@ public class AlbumService {
         return albumRepository.findByBandContaining(band);
     }
 
-    public Map<String, String> findAll() {
-        return albumRepository.findAll().stream().collect(Collectors.toMap(Album::getId,Album::getName));
+    public List<Album> findAll() {
+        List<Album> albums = albumRepository.findAll();
+        return albums.stream().map(album->
+
+                    Album.builder()
+                            .id(album.getId())
+                            .name(album.getName())
+                            .build()
+
+                ).collect(Collectors.toList());
     }
 
-    public Album addAlbum(Album album) {
+    public String addAlbum(Album album) {
         String bandId = album.getBand().getId();
         Band band = bandRepository.findById(bandId).orElse(null);
-        return albumRepository.save(
+        String id;
+        albumRepository.save(
                 Album.builder()
-                        .id(UUID.randomUUID().toString())
+                        .id(id = UUID.randomUUID().toString())
                         .name(album.getName())
+                        .releaseDate(album.getReleaseDate())
                         .band(band)
                         .build());
+        return album.getName() + " - " + id;
     }
 }

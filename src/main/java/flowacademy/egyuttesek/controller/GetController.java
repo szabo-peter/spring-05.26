@@ -1,13 +1,7 @@
 package flowacademy.egyuttesek.controller;
 
 import flowacademy.egyuttesek.model.Album;
-import flowacademy.egyuttesek.model.Band;
 import flowacademy.egyuttesek.model.MusicService;
-import flowacademy.egyuttesek.model.Track;
-import flowacademy.egyuttesek.repository.AlbumRepository;
-import flowacademy.egyuttesek.repository.BandRepository;
-import flowacademy.egyuttesek.repository.MusicServiceRepository;
-import flowacademy.egyuttesek.repository.TrackRepository;
 import flowacademy.egyuttesek.service.AlbumService;
 import flowacademy.egyuttesek.service.BandService;
 import flowacademy.egyuttesek.service.MusicServiceService;
@@ -32,7 +26,7 @@ public class GetController {
     private final MusicServiceService musicServiceService;
 
     @GetMapping("album")
-    public Map<String, String> getAllAlbum() {
+    public List<Album> getAllAlbum() {
         return albumService.findAll();
     }
 
