@@ -46,4 +46,22 @@ public class GetController {
     public List<String> getAllMusicService() {
         return musicServiceService.findAll();
     }
+
+    @GetMapping("musicservice/{id}")
+    public List<String> getTracksFromMusicService(@PathVariable String id) {
+        return musicServiceService.getTracksFromMusicService(id);
+    }
+
+    @GetMapping("track/album/{id}")
+    public List<String> getATrackFromAlbum(@PathVariable String id){
+        return trackService.getATrackFromAlbum(id);
+    }
+
+    @GetMapping("/track")
+    public List<String> getTracksByLengthAndGenre(
+                        @RequestParam("length") String length,
+                        @RequestParam("genre") String genre) {
+
+        return trackService.getTracksByLengthAndGenre(Integer.parseInt(length),genre);
+    }
 }

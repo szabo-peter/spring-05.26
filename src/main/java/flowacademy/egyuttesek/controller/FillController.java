@@ -9,10 +9,7 @@ import flowacademy.egyuttesek.service.BandService;
 import flowacademy.egyuttesek.service.MusicServiceService;
 import flowacademy.egyuttesek.service.TrackService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @AllArgsConstructor
@@ -43,8 +40,13 @@ public class FillController {
         return bandService.createBand(band);
     }
 
-    @PostMapping("letrehoz/track")
+    @PostMapping("track")
     public String createTrack(@RequestBody Track track) {
         return trackService.createTrack(track);
+    }
+
+    @DeleteMapping("musicservice/track/{id}")
+    public void deleteATrackFromMusicService(@PathVariable String id){
+        trackService.deleteATrackFromMusicService(id);
     }
 }
