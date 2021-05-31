@@ -4,6 +4,7 @@ package flowacademy.egyuttesek.service;
 import flowacademy.egyuttesek.model.Album;
 import flowacademy.egyuttesek.model.Band;
 import flowacademy.egyuttesek.model.Track;
+import flowacademy.egyuttesek.model.dto.AlbumResponse;
 import flowacademy.egyuttesek.repository.AlbumRepository;
 import flowacademy.egyuttesek.repository.BandRepository;
 import lombok.AllArgsConstructor;
@@ -22,32 +23,28 @@ public class AlbumService {
     private final AlbumRepository albumRepository;
     private final BandRepository bandRepository;
 
-    public List<String> findByName(String name) {
+    public List<AlbumResponse> findByName(String name) {
         List<Album> albums = albumRepository.findByBandNameContaining(name);
 
-        return albums.stream().map(album -> album.getId() + ";" + album.getName() + ";" + album.getReleaseDate()
-                + ";" + album.getTrackList().stream().map(Track::getTrackLength).reduce(0, Integer::sum)).collect(Collectors.toList());
-
+        return albums.stream().map(AlbumResponse::giveIdNameDateTrackLengthSum).collect(Collectors.toList());
     }
 
-
-    public List<String> findAll() {
+    public List<AlbumResponse> findAll() {
         List<Album> albums = albumRepository.findAll();
-        return albums.stream().map(album -> album.getId() + ";" + album.getName()).collect(Collectors.toList());
+        return albums.stream().map(AlbumResponse::giveIdName).collect(Collectors.toList());
     }
 
-    public String addAlbum(Album album) {
+    public void createAlbum(Album album) {
         String bandId = album.getBand().getId();
         Band band = bandRepository.findById(bandId).orElse(null);
-        String id;
+
         albumRepository.save(
                 Album.builder()
-                        .id(id = UUID.randomUUID().toString())
+                        .id(UUID.randomUUID().toString())
                         .name(album.getName())
                         .releaseDate(album.getReleaseDate())
                         .band(band)
                         .build());
-        return album.getName() + " - " + id;
     }
 
 

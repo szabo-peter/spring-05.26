@@ -2,6 +2,8 @@ package flowacademy.egyuttesek.service;
 
 import flowacademy.egyuttesek.model.MusicService;
 import flowacademy.egyuttesek.model.Track;
+import flowacademy.egyuttesek.model.dto.MusicServiceResponse;
+import flowacademy.egyuttesek.model.dto.TrackResponse;
 import flowacademy.egyuttesek.repository.MusicServiceRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,26 +18,25 @@ public class MusicServiceService {
 
     private final MusicServiceRepository musicServiceRepository;
 
-    public String createMusicService(MusicService musicService) {
-        String id;
+    public void createMusicService(MusicService musicService) {
+
         musicServiceRepository.save(
                 MusicService.builder()
-                        .id(id = UUID.randomUUID().toString())
+                        .id(UUID.randomUUID().toString())
                         .name(musicService.getName())
                         .build()
         );
-        return musicService.getName() + " - " + id;
     }
 
-    public List<String> findAll() {
+    public List<MusicServiceResponse> findAll() {
         List<MusicService> musicServices = musicServiceRepository.findAll();
 
-        return musicServices.stream().map(musicService -> musicService.getId() + ";" + musicService.getName()).collect(Collectors.toList());
+        return musicServices.stream().map(MusicServiceResponse::giveIdName).collect(Collectors.toList());
     }
 
-    public List<String> getTracksFromMusicService(String id) {
+    public List<TrackResponse> getTracksFromMusicService(String id) {
         List<Track> tracks = musicServiceRepository.getById(id).getTrackList();
 
-        return tracks.stream().map(track -> track.getId() + ";" + track.getName()+";"+track.getAlbum().getBand().getName()).collect(Collectors.toList());
+        return tracks.stream().map(TrackResponse::giveIdTrackNameBandName).collect(Collectors.toList());
     }
 }

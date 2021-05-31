@@ -18,9 +18,11 @@ public class Track {
     private String name;
     private int trackLength;
     private int licencePrice;
+
     @ManyToOne
     @JoinColumn
     private Album album;
+
     @ManyToOne
     @JoinColumn
     private MusicService musicService;

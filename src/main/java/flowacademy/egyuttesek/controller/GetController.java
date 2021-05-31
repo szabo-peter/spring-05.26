@@ -1,5 +1,10 @@
 package flowacademy.egyuttesek.controller;
 
+import flowacademy.egyuttesek.model.Track;
+import flowacademy.egyuttesek.model.dto.AlbumResponse;
+import flowacademy.egyuttesek.model.dto.BandResponse;
+import flowacademy.egyuttesek.model.dto.MusicServiceResponse;
+import flowacademy.egyuttesek.model.dto.TrackResponse;
 import flowacademy.egyuttesek.service.AlbumService;
 import flowacademy.egyuttesek.service.BandService;
 import flowacademy.egyuttesek.service.MusicServiceService;
@@ -23,42 +28,42 @@ public class GetController {
     private final MusicServiceService musicServiceService;
 
     @GetMapping("album")
-    public List<String> getAllAlbum() {
+    public List<AlbumResponse> getAllAlbum() {
         return albumService.findAll();
     }
 
     @GetMapping("band")
-    public List<String> getAllBand() {
+    public List<BandResponse> getAllBand() {
         return bandService.findAll();
     }
 
     @GetMapping("album/{band}")
-    public List<String> getAlbumsByBand(@PathVariable String band) {
+    public List<AlbumResponse> getAlbumsByBand(@PathVariable String band) {
         return albumService.findByName(band);
     }
 
     @GetMapping("track/{album}")
-    public List<String> getTracksByAlbum(@PathVariable String album) {
+    public List<TrackResponse> getTracksByAlbum(@PathVariable String album) {
         return trackService.getTracksByAlbum(album);
     }
 
     @GetMapping("musicservice")
-    public List<String> getAllMusicService() {
+    public List<MusicServiceResponse> getAllMusicService() {
         return musicServiceService.findAll();
     }
 
     @GetMapping("musicservice/{id}")
-    public List<String> getTracksFromMusicService(@PathVariable String id) {
+    public List<TrackResponse> getTracksFromMusicService(@PathVariable String id) {
         return musicServiceService.getTracksFromMusicService(id);
     }
 
     @GetMapping("track/album/{id}")
-    public List<String> getATrackFromAlbum(@PathVariable String id){
+    public List<TrackResponse> getATrackFromAlbum(@PathVariable String id){
         return trackService.getATrackFromAlbum(id);
     }
 
     @GetMapping("/track")
-    public List<String> getTracksByLengthAndGenre(
+    public List<TrackResponse> getTracksByLengthAndGenre(
                         @RequestParam("length") String length,
                         @RequestParam("genre") String genre) {
 

@@ -1,6 +1,7 @@
 package flowacademy.egyuttesek.service;
 
 import flowacademy.egyuttesek.model.Band;
+import flowacademy.egyuttesek.model.dto.BandResponse;
 import flowacademy.egyuttesek.repository.BandRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,20 +16,20 @@ public class BandService {
 
     private final BandRepository bandRepository;
 
-    public String createBand(Band band){
-        String id;
+    public void createBand(Band band){
+
         bandRepository.save(
                 Band.builder()
-                        .id(id =UUID.randomUUID().toString())
+                        .id(UUID.randomUUID().toString())
                         .name(band.getName())
                         .musicGenre(band.getMusicGenre())
                         .build()
         );
-        return band.getName() + " - " + id;
     }
 
-    public List<String> findAll() {
+    public List<BandResponse> findAll() {
         List<Band> bands = bandRepository.findAll();
-        return bands.stream().map(band -> band.getId()+";"+band.getName()).collect(Collectors.toList());
+
+        return bands.stream().map(BandResponse::create).collect(Collectors.toList());
     }
 }

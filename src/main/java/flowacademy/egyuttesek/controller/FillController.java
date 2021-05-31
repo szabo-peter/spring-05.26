@@ -9,6 +9,7 @@ import flowacademy.egyuttesek.service.BandService;
 import flowacademy.egyuttesek.service.MusicServiceService;
 import flowacademy.egyuttesek.service.TrackService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -26,26 +27,31 @@ public class FillController {
     private final MusicServiceService musicServiceService;
 
     @PostMapping("album")
-    public String createAlbum(@RequestBody Album album) {
-        return albumService.addAlbum(album);
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createAlbum(@RequestBody Album album) {
+       albumService.createAlbum(album);
     }
 
     @PostMapping("musicservice")
-    public String createMusicService(@RequestBody MusicService musicService) {
-        return musicServiceService.createMusicService(musicService);
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createMusicService(@RequestBody MusicService musicService) {
+         musicServiceService.createMusicService(musicService);
     }
 
     @PostMapping("band")
-    public String createBand(@RequestBody Band band) {
-        return bandService.createBand(band);
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createBand(@RequestBody Band band) {
+        bandService.createBand(band);
     }
 
     @PostMapping("track")
-    public String createTrack(@RequestBody Track track) {
-        return trackService.createTrack(track);
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createTrack(@RequestBody Track track) {
+        trackService.createTrack(track);
     }
 
     @DeleteMapping("musicservice/track/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteATrackFromMusicService(@PathVariable String id){
         trackService.deleteATrackFromMusicService(id);
     }
