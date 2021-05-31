@@ -1,10 +1,7 @@
 package flowacademy.egyuttesek.bootstrap;
 
 import com.github.javafaker.Faker;
-import flowacademy.egyuttesek.model.Album;
-import flowacademy.egyuttesek.model.Band;
-import flowacademy.egyuttesek.model.MusicService;
-import flowacademy.egyuttesek.model.Track;
+import flowacademy.egyuttesek.model.*;
 import flowacademy.egyuttesek.repository.AlbumRepository;
 import flowacademy.egyuttesek.repository.BandRepository;
 import flowacademy.egyuttesek.repository.MusicServiceRepository;
@@ -64,7 +61,11 @@ public class InitDataLoader implements CommandLineRunner {
         return IntStream.range(0, 10)
                 .mapToObj(value -> Band.builder()
                         .id(UUID.randomUUID().toString())
-                        .musicGenre(faker().music().genre())
+                        .musicGenre(
+                                faker().number().numberBetween(1,4) == 1? MusicGenre.POP:
+                                        faker().number().numberBetween(1,4) == 2 ? MusicGenre.METAL:
+                                                faker().number().numberBetween(1,4) == 3? MusicGenre.RAP:
+                                                        MusicGenre.ROCK)
                         .name(faker().rockBand().name())
                         .build())
                 .collect(Collectors.toList());

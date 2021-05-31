@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -20,7 +17,8 @@ public class Band {
     @Id
     private String id;
     private String name;
-    private String musicGenre;
+    @Enumerated(EnumType.STRING)
+    private MusicGenre musicGenre;
 
     @OneToMany(mappedBy = "band", fetch = FetchType.EAGER)
     protected List<Album> albumList;
