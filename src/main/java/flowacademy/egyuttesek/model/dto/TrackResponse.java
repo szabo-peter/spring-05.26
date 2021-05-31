@@ -11,12 +11,6 @@ public class TrackResponse {
 
     private String id;
     private String trackName;
-//    private String bandName;
-//    private int trackLength;
-//    private int licencePrice;
-//    private String bandGenre;
-//    private String musicServiceName;
-
 
     public static TrackResponse giveIdTrackName(Track track) {
         return new TrackResponse(track.getId(), track.getName());
