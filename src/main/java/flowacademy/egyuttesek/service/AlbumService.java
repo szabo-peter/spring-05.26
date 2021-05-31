@@ -5,6 +5,7 @@ import flowacademy.egyuttesek.model.Album;
 import flowacademy.egyuttesek.model.Band;
 import flowacademy.egyuttesek.model.Track;
 import flowacademy.egyuttesek.model.dto.AlbumResponse;
+import flowacademy.egyuttesek.model.dto.AlbumResponse2;
 import flowacademy.egyuttesek.repository.AlbumRepository;
 import flowacademy.egyuttesek.repository.BandRepository;
 import lombok.AllArgsConstructor;
@@ -23,10 +24,10 @@ public class AlbumService {
     private final AlbumRepository albumRepository;
     private final BandRepository bandRepository;
 
-    public List<AlbumResponse> findByName(String name) {
-        List<Album> albums = albumRepository.findByBandNameContaining(name);
+    public List<AlbumResponse2> findByBandId(String id) {
+        List<Album> albums = albumRepository.findByBandId(id);
 
-        return albums.stream().map(AlbumResponse::giveIdNameDateTrackLengthSum).collect(Collectors.toList());
+        return albums.stream().map(AlbumResponse2::giveIdNameDateTrackLengthSum).collect(Collectors.toList());
     }
 
     public List<AlbumResponse> findAll() {

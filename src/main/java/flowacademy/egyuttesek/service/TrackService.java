@@ -4,6 +4,7 @@ import flowacademy.egyuttesek.model.Album;
 import flowacademy.egyuttesek.model.MusicService;
 import flowacademy.egyuttesek.model.Track;
 import flowacademy.egyuttesek.model.dto.TrackResponse;
+import flowacademy.egyuttesek.model.dto.TrackResponse2;
 import flowacademy.egyuttesek.repository.AlbumRepository;
 import flowacademy.egyuttesek.repository.MusicServiceRepository;
 import flowacademy.egyuttesek.repository.TrackRepository;
@@ -44,14 +45,14 @@ public class TrackService {
     public List<TrackResponse> getTracksByAlbum(String name) {
         List<Track> tracks = trackRepository.findByAlbumNameContaining(name);
 
-        return tracks.stream().map(TrackResponse::giveIdTrackNameTrackLengthBandGenre).collect(Collectors.toList());
+        return tracks.stream().map(TrackResponse::giveIdTrackName).collect(Collectors.toList());
 
     }
 
-    public List<TrackResponse> getATrackFromAlbum(String id) {
+    public List<TrackResponse2> getATrackById(String id) {
         Optional<Track> findTrack = trackRepository.findById(id);
 
-        return findTrack.stream().map(TrackResponse::giveIdTrackNameTrackLengthLicencePriceMusicServiceName).collect(Collectors.toList());
+        return findTrack.stream().map(TrackResponse2::giveIdTrackNameTrackLengthLicencePriceMusicServiceName).collect(Collectors.toList());
 
     }
 

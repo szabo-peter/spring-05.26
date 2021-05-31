@@ -4,6 +4,7 @@ import flowacademy.egyuttesek.model.MusicService;
 import flowacademy.egyuttesek.model.Track;
 import flowacademy.egyuttesek.model.dto.MusicServiceResponse;
 import flowacademy.egyuttesek.model.dto.TrackResponse;
+import flowacademy.egyuttesek.model.dto.TrackResponse3;
 import flowacademy.egyuttesek.repository.MusicServiceRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -34,9 +35,9 @@ public class MusicServiceService {
         return musicServices.stream().map(MusicServiceResponse::giveIdName).collect(Collectors.toList());
     }
 
-    public List<TrackResponse> getTracksFromMusicService(String id) {
+    public List<TrackResponse3> getTracksFromMusicService(String id) {
         List<Track> tracks = musicServiceRepository.getById(id).getTrackList();
 
-        return tracks.stream().map(TrackResponse::giveIdTrackNameBandName).collect(Collectors.toList());
+        return tracks.stream().map(TrackResponse3::giveIdTrackNameBandName).collect(Collectors.toList());
     }
 }
