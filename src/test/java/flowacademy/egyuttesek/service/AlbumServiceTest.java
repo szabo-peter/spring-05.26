@@ -1,6 +1,8 @@
 package flowacademy.egyuttesek.service;
 
 import flowacademy.egyuttesek.model.Album;
+import flowacademy.egyuttesek.model.Band;
+import flowacademy.egyuttesek.model.dto.AlbumResponse2;
 import flowacademy.egyuttesek.repository.AlbumRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -26,13 +28,33 @@ class AlbumServiceTest {
     public void findAllAlbumTest() {
         List<Album> albumList = List.of(
                 Album.builder().id("ID01").name("Album Cím1").build(),
-                Album.builder().id("ID01").name("Album Cím2").build(),
-                Album.builder().id("ID01").name("Album Cím3").build()
+                Album.builder().id("ID02").name("Album Cím2").build(),
+                Album.builder().id("ID03").name("Album Cím3").build()
         );
         when(albumRepository.findAll()).thenReturn(albumList);
 
         assertEquals(3, albumService.findAll().size());
     }
+
+//    @Test
+//    void findByBandId() {
+//        List<Album> albumList = List.of(
+//                Album.builder().id("A01").name("Album Cím1").band(
+//                        Band.builder().id("B01").build()
+//                ).build(),
+//                Album.builder().id("A02").name("Album Cím1").band(
+//                        Band.builder().id("B02").build()
+//                ).build(),
+//                Album.builder().id("A02").name("Album Cím1").band(
+//                        Band.builder().id("B03").build()
+//                ).build()
+//        );
+//        when(albumRepository.findAll()).thenReturn(albumList);
+//        System.out.println(albumList);
+//        List<Album> albums = albumRepository.findByBandId("B03");
+//
+//        assertEquals(1,albums.size());
+//    }
 
 //    @Test
 //    void findByName() {

@@ -27,14 +27,7 @@ class TrackServiceTest {
     @Mock
     AlbumRepository albumRepository;
 
-//    @Test
-//    void createTrack() {
-//
-//        when(trackRepository.getById("001")).thenReturn(Track.builder().id("001").trackLength(100).name("Név").build());
-//
-//        assertEquals("001",trackService.getATrackFromAlbum("001").get(0).split(";")[0]);
-//
-//    }
+
 
 //    @Test
 //    void getTracksByAlbum() {
